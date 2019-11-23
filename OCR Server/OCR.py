@@ -23,5 +23,5 @@ def detect_text(path):
         # print('bounds: {}'.format(','.join(vertices)))
 
 cwd = os.getcwd()
-path = cwd + "/Receipts/1.jpg"
+path = cwd + "/../Receipts/1.jpg"
 detect_text(path)
