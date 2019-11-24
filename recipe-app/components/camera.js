@@ -129,6 +129,7 @@ export default class CameraExample extends React.Component {
       };
       data.append("image", pic);
       processImage(data);
+      this.props.navigation.navigate("Fridge");
     }
   };
 }

@@ -23,11 +23,13 @@ const styles = StyleSheet.create({
     width: "100%",
     backgroundColor: "#ece6f2",
     margin: 0,
+    alignSelf: "stretch"
   },
   content: {
     display: "flex",
     backgroundColor: "#ece6f2",
     width: "100%",
+    height: "100%",
     marginTop: 0,
     alignItems: "center",
     justifyContent: "flex-start",
