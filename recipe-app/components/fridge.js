@@ -48,23 +48,24 @@ export default class Fridge extends Component {
     };
 
     deleteItem(key) {
-        let list = this.state.list;
+        let list = [];
         db.ref("/ingredients")
             .child(key)
             .remove()
             .then(() => {
-                db.ref("/ingredients").once("value", function(snapshot) {
-                    list.push({
-                        key: snapshot.key,
-                        name: snapshot.val().name
+                db.ref("/ingredients")
+                    .once("value", function(snapshot) {
+                        snapshot.forEach(function(childSnapshot) {
+                            list.push({
+                                key: childSnapshot.key,
+                                name: childSnapshot.val().name
+                            });
+                        });
+                    })
+                    .then(() => {
+                        this.setState({ list: list });
                     });
-                });
             });
-
-        this.setState({
-            text: "",
-            list: list
-        });
     }
 
     render() {
