@@ -15,11 +15,13 @@ const styles = StyleSheet.create({
     navigationBar: {
         flexDirection: 'row',
         height: appBarHeight,
-        backgroundColor: 'pink',
+        backgroundColor: '#9042D0',
         justifyContent: 'space-between',
         alignItems: 'center',
         color: 'black',
-        padding: 5
+        padding: 5,
+        paddingLeft: 15,
+        paddingRight: 15
     },
 });
 
@@ -30,9 +32,14 @@ class NavigationBar extends PureComponent {
 
     render() {
         const {
-            componentLeft,
-            componentCenter,
-            componentRight,
+            labelLeft,
+            onClickLeft,
+
+            labelCenter,
+            onClickCenter,
+
+            labelRight,
+            onClickRight,
 
             barStyle,
             backgroundColor,
@@ -45,10 +52,24 @@ class NavigationBar extends PureComponent {
                     barStyle={barStyle}
                     backgroundColor={backgroundColor}
                 />
-                <View style={[styles.navigationBar, navigationBarStyle,]}>
-                {componentLeft}
-                {componentCenter}
-                {componentRight}
+                <View style={[styles.navigationBar, navigationBarStyle]}>
+                    <Button
+                        title={labelLeft}
+                        color="#B55BD7"
+                        onPress={() => {
+                            console.log("click left");
+                        }}
+                    />
+                    <Button
+                        title={labelCenter}
+                        color="#B55BD7"
+                        onPress={this.props.onClickCenter}
+                    />
+                    <Button
+                        title={labelRight}
+                        color="#B55BD7"
+                        onPress={this.props.onClickRight}
+                    />
                 </View>
             </View>
         </View>);
@@ -62,13 +83,11 @@ NavigationBar.defaultProps = {
         backgroundColor: '#215e79',
     },
     navigationBarStyle: {
-        backgroundColor: 'pink',
+        backgroundColor: '#9042D0',
     },
     componentLeft: <View style={{ flex: 1 }}/>,
     componentCenter: <View style={{ flex: 1 }}/>,
     componentRight: <View style={{ flex: 1 }}/>
 };
-
-//exports.default = NavigationBar;
 
 export default NavigationBar;
