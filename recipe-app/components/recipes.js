@@ -56,10 +56,18 @@ export default class RecipeSearch extends Component {
     render() {
         if (this.state.dataFetched) {
             return (
-                <ScrollView>
+                <ScrollView style={{ backgroundColor: "#ece6f2" }}>
                     {this.state.recipes.map((recipe, i) => {
                         return (
-                            <Card title={recipe.title} style={{fontSize: 25}} key={i}>
+                            <Card
+                                title={recipe.title}
+                                style={{
+                                    fontSize: 25,
+                                    color: "#ece6f2"
+                                }}
+                                key={i}
+                                borderRadius={5}
+                            >
                                 <View style={style.viewContainer}>
                                     <Image
                                         style={style.images}
@@ -105,7 +113,8 @@ const style = StyleSheet.create({
         height: 150,
         width: 150,
         marginRight: 15,
-        flex: 1
+        flex: 1,
+        borderRadius: 5
     },
     viewContainer: {
         display: "flex",
