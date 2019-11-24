@@ -47,7 +47,8 @@ export default class CameraExample extends React.Component {
                 onPress={() => {
                   this.setState({
                     type:
-                      this.state.type === Camera.Constants.Type.back
+                      this.state.type ===
+                        Camera.Constants.Type.back
                         ? Camera.Constants.Type.front
                         : Camera.Constants.Type.back
                   });
@@ -64,7 +65,10 @@ export default class CameraExample extends React.Component {
                   Flip{" "}
                 </Text>
               </TouchableOpacity>
-              <Button onPress={() => this.snap()} title="take picture">
+              <Button
+                onPress={() => this.snap()}
+                title="take picture"
+              >
                 {" "}
               </Button>
             </View>

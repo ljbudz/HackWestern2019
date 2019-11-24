@@ -8,8 +8,8 @@ export default class HomeScreen extends Component {
       <View style={styles.container}>
         <Text>Hello World</Text>
         <Button
-          title="go to camera"
-          onPress={() => this.props.navigation.navigate("Camera")}
+          title="Fridge"
+          onPress={() => this.props.navigation.navigate("Fridge")}
         />
         <Button
           title="Recipes"
