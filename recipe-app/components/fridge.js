@@ -36,7 +36,6 @@ const navStyles = StyleSheet.create({
 export default class Fridge extends Component {
     constructor(props) {
         super(props);
-<<<<<<< HEAD
         this.state = { text: "", list: []};
 
         this.goToHomeScreen = this.goToHomeScreen.bind(this);
@@ -54,11 +53,6 @@ export default class Fridge extends Component {
 
     goToCamera() {
         this.props.navigation.navigate("Camera");
-=======
-        this.state = { text: "", list: [] };
-
-        this.deleteItem = this.deleteItem.bind(this);
->>>>>>> b8dbd988d48532692e8f17e6f828b625ebdb119b
     }
 
     componentDidMount() {
@@ -119,7 +113,6 @@ export default class Fridge extends Component {
 
     render() {
         return (
-<<<<<<< HEAD
             <ScrollView stickyHeaderIndices={[0]}>
                 {/*this shit is the nav bar thing*/}
                 <View style={navStyles.container}>
@@ -129,11 +122,6 @@ export default class Fridge extends Component {
                             color="#B55BD7"
                             onPress={() => this.goToCamera()}
                         />
-=======
-            <ScrollView stickyHeaderIndices={[0]} keyboardShouldPersistTaps={'always'}>
-                <Header
-                    leftComponent={
->>>>>>> b8dbd988d48532692e8f17e6f828b625ebdb119b
                         <Button
                             title={"My Fridge"}
                             color="#B55BD7"
