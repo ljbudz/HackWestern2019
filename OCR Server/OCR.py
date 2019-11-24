@@ -13,12 +13,13 @@ def detect_text(path):
     response = client.text_detection(image=image)
     texts = response.text_annotations
     print('Texts:')
-    # ingredients = []
+    ingredients = []
     ingredients = texts[0].description.split('\n')
     # for text in texts:
     #     print('\n"{}"'.format(text.description))
     #     ingredients.append(str(text.description))
-    return ingredients
+    # print (type(ingredients))
+    return (ingredients)
 
         # vertices = (['({},{})'.format(vertex.x, vertex.y)
         #             for vertex in text.bounding_poly.vertices])
