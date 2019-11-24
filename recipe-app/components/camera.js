@@ -3,6 +3,8 @@ import { Text, View, TouchableOpacity, Button } from "react-native";
 import * as Permissions from "expo-permissions";
 import { Camera } from "expo-camera";
 import { StyleSheet, Platform } from "react-native";
+import FormData from 'FormData';
+// import { response } from "express";
 
 export default class CameraExample extends React.Component {
   state = {
@@ -96,6 +98,33 @@ export default class CameraExample extends React.Component {
     if (this.camera) {
       let photo = await this.camera.takePictureAsync();
       console.log(photo);
+      var data  = new FormData();
+      var pic = {
+        uri: photo.uri,
+        type: 'image/jpeg',
+        name: 'photo.jpg'
+      };
+      data.append("test", "ABCD");
+      data.append("image", pic);
+      // Update URL accordingly
+      fetch('http://2e2c28a2.ngrok.io/procReceipt',
+      {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type':'multipart/form-data',
+          'X-Requested-With': 'XMLHttpRequest'
+        },
+        body:data
+      }).then((response) => response.json())
+      .then(responseJSON => {
+        console.log(responseJSON);
+        // TODO: Add ingredients to firebase
+      })
+      .catch((error)=>{
+        console.log(error);
+      });
+      console.log("Hello");
     }
   };
 }

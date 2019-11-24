@@ -17,6 +17,7 @@ def home():
 
 @app.route("/procReceipt", methods=['POST'])
 def processReceipt():
+    print(request)
     file = request.files['image']
 
     if (file is None or file.filename == ''):
