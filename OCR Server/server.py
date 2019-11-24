@@ -4,7 +4,7 @@ from werkzeug.utils import secure_filename
 from OCR import detect_text
 import json
 from flask_ngrok import run_with_ngrok
-import nltk
+# import nltk
 from nltk.corpus import wordnet
 
 UPLOAD_FOLDER = "uploads"
@@ -21,7 +21,7 @@ def home():
 
 @app.route("/procReceipt", methods=['POST'])
 def processReceipt():
-    english_vocab = set(w.lower() for w in nltk.corpus.words.words())
+    # english_vocab = set(w.lower() for w in nltk.corpus.words.words())
     print(request)
     file = request.files['image']
 
@@ -36,7 +36,7 @@ def processReceipt():
             arr = ingredients[i].split()
             for j in range (len(arr)):
                 # if (arr[j] in english_vocab):
-                if (len(arr[j]) != 1 and len(arr[j]) != 2 and (arr[j].lower() not in removeArray) and (arr[j].capitalize() not in returnArray) and ("." not in arr[j]) and (arr[j].isnumeric() == False) and wordnet.synsets(arr[j])):
+                if (len(arr[j]) != 1 and len(arr[j]) != 2 and (arr[j].lower() not in removeArray) and (arr[j].capitalize() not in returnArray) and ("." not in arr[j]) and wordnet.synsets(arr[j])):
                     returnArray.append(str(arr[j]).capitalize())
 
         return Response(json.dumps(returnArray), mimetype='application/json')

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Platform, ScrollView, StyleSheet, Keyboard, View, TouchableOpacity, Text } from "react-native";
-import { ListItem, Input, Button, Header } from "react-native-elements";
+import { ListItem, Input, Button, Header, Icon } from "react-native-elements";
 import TouchableScale from "react-native-touchable-scale";
 import { db } from "../config";
 
@@ -36,7 +36,12 @@ const navStyles = StyleSheet.create({
 export default class Fridge extends Component {
     constructor(props) {
         super(props);
+<<<<<<< HEAD
+=======
+
+>>>>>>> 891cc6e9c6494f7faf0e5b28670e7595738a33c7
         this.state = { text: "", list: []};
+        this.deleteItem = this.deleteItem.bind(this);
 
         this.goToHomeScreen = this.goToHomeScreen.bind(this);
         this.goToRecipes = this.goToRecipes.bind(this);
