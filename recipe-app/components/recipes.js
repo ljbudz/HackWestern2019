@@ -1,12 +1,6 @@
 import React, { Component } from "react";
-import {
-  StyleSheet,
-  Text,
-  View,
-  Button,
-  TextInput,
-  TouchableHighlight
-} from "react-native";
+import { View, Text, Image } from "react-native";
+import { Card, ListItem, Button, Icon } from "react-native-elements";
 import { db } from "../config";
 
 let addIngredient = item => {
@@ -21,13 +15,10 @@ export default class RecipeSearch extends Component {
     this.state = {recipes: []}
   }
 
-  state = {
-    name: ""
-  };
-
   render() {
     return (
-    );
+      <View></View>
+    )
   }
 }
 
