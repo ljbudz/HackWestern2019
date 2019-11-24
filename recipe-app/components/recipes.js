@@ -1,13 +1,47 @@
 import React, { Component } from "react";
-import { ScrollView, View, Image, Text, StyleSheet } from "react-native";
+import { Platform, ScrollView, StyleSheet, Image, View, TouchableOpacity, Text } from "react-native";
 import { Card, Button } from "react-native-elements";
 import { db } from "../config";
 import { getRecipes } from "../recipeRequest";
+
+/* navigation bar */
+
+const statusBarHeight = Platform.OS === 'ios' ? 20 : 0;
+const appBarHeight = Platform.OS === 'ios' ? 44 : 56;
+
+const navStyles = StyleSheet.create({
+    container: {
+        width: "100%",
+        backgroundColor: "blue",
+        marginTop: 5
+    },
+    statusBar: { 
+        height: statusBarHeight,
+    },
+    navigationBar: {
+        flexDirection: 'row',
+        height: appBarHeight,
+        backgroundColor: 'white',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        padding: 15,
+        paddingLeft: 20,
+        paddingRight: 20,
+        alignSelf: "flex-end",
+        width: "100%",
+    },
+});
+
+/*navigation bar*/
 
 export default class RecipeSearch extends Component {
     constructor(props) {
         super(props);
         this.state = { recipes: [], ingredients: [], dataFetched: false };
+
+      this.goToFridge = this.goToFridge.bind(this);
+      this.goToHomeScreen = this.goToHomeScreen.bind(this);
+      this.goToCamera = this.goToCamera.bind(this);
     }
 
     componentDidMount() {
@@ -29,6 +63,18 @@ export default class RecipeSearch extends Component {
                     );
                 });
             });
+    }
+
+    goToFridge() {
+      this.props.navigation.navigate("Fridge");
+    }
+
+    goToHomeScreen() {
+        this.props.navigation.navigate("Home");
+    }
+
+    goToCamera() {
+      this.props.navigation.navigate("Camera");
     }
 
     parseRecipeText(recipe) {
@@ -56,10 +102,52 @@ export default class RecipeSearch extends Component {
     render() {
         if (this.state.dataFetched) {
             return (
-                <ScrollView>
+                <ScrollView style={{backgroundColor: "#ece6f2"}}>
+                  {/*this shit is the nav bar thing*/}
+                  <View style={navStyles.container}>
+                      <View style={[navStyles.navigationBar]}>
+                          {/*<Button
+                              title={"Launch Camera"}
+                              color="#B55BD7"
+                              onPress={() => this.goToCamera()}
+                          />
+                          <Button
+                              title={"My Fridge"}
+                              color="#B55BD7"
+                              onPress={() => this.goToFridge()}
+                          />
+                          <Button
+                            title={"Recipes"}
+                            color="#B55BD7"
+                            onPress={() => this.goToRecipes()}
+                          />*/}
+                          <TouchableOpacity onPress = {() => this.goToCamera()}>
+                            <View style = {{backgroundColor: '#9042D0', alignItems: 'center', 
+                                            justifyContent: 'center', borderRadius: 10, width: 100, height: 30}}
+                                   >
+                                <Text style = {{color: 'white'}}>Camera</Text>
+                            </View>
+                          </TouchableOpacity>
+                          <TouchableOpacity onPress = {() => this.goToHomeScreen()}>
+                            <View style = {{backgroundColor: '#9042D0', alignItems: 'center', 
+                                            justifyContent: 'center', borderRadius: 10, width: 100, height: 30}}
+                                   >
+                                <Text style = {{color: 'white'}}>Home</Text>
+                            </View>
+                          </TouchableOpacity>
+                          <TouchableOpacity onPress = {() => this.goToFridge()}>
+                            <View style = {{backgroundColor: '#9042D0', alignItems: 'center', 
+                                            justifyContent: 'center', borderRadius: 10, width: 100, height: 30}}
+                                   >
+                                <Text style = {{color: 'white'}}>Fridge</Text>
+                            </View>
+                          </TouchableOpacity>
+                      </View>
+                  </View>
+                  {/*this shit is the nav bar thing*/}
                     {this.state.recipes.map((recipe, i) => {
                         return (
-                            <Card title={recipe.title} style={{fontSize: 25}} key={i}>
+                            <Card title={recipe.title} style={style.card} key={i} titleStyle={style.cardTitle}>
                                 <View style={style.viewContainer}>
                                     <Image
                                         style={style.images}
@@ -78,6 +166,9 @@ export default class RecipeSearch extends Component {
                                                 "\n"}
                                         </Text>
                                         {this.parseRecipeText(recipe)[1]}
+                                        <Text style={{color: "green"}}>
+                                            {"\nYou Save: $" + Math.floor(Math.random()*20)}
+                                        </Text>
                                     </Text>
                                 </View>
                             </Card>
@@ -105,12 +196,22 @@ const style = StyleSheet.create({
         height: 150,
         width: 150,
         marginRight: 15,
-        flex: 1
+        flex: 1,
+        borderRadius: 5
     },
     viewContainer: {
         display: "flex",
         flexDirection: "row",
         justifyContent: "space-between",
-        alignContent: "flex-start"
+        alignContent: "flex-start",
+    },
+    card: {
+      fontSize: 25
+    },
+    cardTitle: {
+      backgroundColor: "#9042D0",
+      color: "white",
+      padding: 15,
+      borderRadius: 5
     }
 });
