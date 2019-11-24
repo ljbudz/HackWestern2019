@@ -4,7 +4,8 @@ import * as Permissions from "expo-permissions";
 import { Camera } from "expo-camera";
 import { StyleSheet, Platform } from "react-native";
 import FormData from 'FormData';
-import { db } from "../config"
+import { db } from "../config";
+import {processImage} from "./serverQuery.js";
 // import { response } from "express";
 
 export default class CameraExample extends React.Component {
@@ -127,30 +128,7 @@ export default class CameraExample extends React.Component {
         name: 'photo.jpg'
       };
       data.append("image", pic);
-      // Update URL accordingly
-      fetch('http://53869399.ngrok.io/procReceipt',
-        {
-          method: 'POST',
-          headers: {
-            Accept: 'application/json',
-            'Content-Type': 'multipart/form-data',
-            'X-Requested-With': 'XMLHttpRequest'
-          },
-          body: data
-        }).then((response) => response.json())
-        .then(responseJSON => {
-          console.log(responseJSON);
-
-        
-          // //ArrayName.forEach(function(ingredient) {
-          //   const newItemRef = db.ref("/ingredients").push()
-          //   newItemRef.set({
-          //     name: // Name property
-          //   })});
-        })
-        .catch((error) => {
-          console.log(error);
-        });
+      processImage(data);
     }
   };
 }

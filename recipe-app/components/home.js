@@ -13,127 +13,129 @@ import NavigationBar from "./navigation.js";
 //import BottomNav from './bottomNav.js';
 
 const styles = StyleSheet.create({
-    mainView: {
-        display: "flex",
-        flexWrap: "nowrap",
-        flexDirection: "column",
-        alignItems: "flex-start",
-        justifyContent: "flex-start",
-        height: "100%",
-        width: "100%",
-        backgroundColor: "white",
-        margin: 0
-    },
-    content: {
-        display: "flex",
-        backgroundColor: "#ece6f2",
-        height: "80%",
-        width: "100%",
-        marginTop: 0,
-        alignItems: "center",
-        justifyContent: "flex-start"
-    },
-    navButton: {
-        backgroundColor: "#B55BD7",
-        color: "white"
-    },
-    headingText: {
-        color: "white",
-        fontSize: 25,
-        margin: 5
-    },
-    bodyText: {
-        color: "grey",
-        fontSize: 20,
-        margin: 2
-    },
-    smallText: {
-        color: "grey",
-        fontSize: 15,
-        margin: 2
-    },
-    image: {
-        width: 240,
-        height: 240,
-        borderRadius: 5,
-        marginBottom: 10
-    },
-    lastRecipeDisplay: {
-        backgroundColor: "white",
-        borderRadius: 5,
-        marginTop: 35,
-        marginBottom: 30,
-        width: "85%",
-        height: 400,
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "flex-start"
-    },
-    lastRecipeHeader: {
-        backgroundColor: "#9042D0",
-        borderTopLeftRadius: 5,
-        borderTopRightRadius: 5,
-        width: "100%",
-        height: 50,
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        color: "white"
-    },
-    lastRecipeFoodDesc: {
-        paddingTop: 25,
-        paddingBottom: 30,
-        paddingLeft: 15,
-        paddingRight: 15,
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "flex-start"
-    },
-    button: {
-        fontSize: 25
-    },
-    appHeader: {
-        width: "100%",
-        height: 60,
-        backgroundColor: "#9042D0",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center"
-    },
-    appHeaderText: {
-        color: "white",
-        fontSize: 30,
-        margin: 5
-    }
+  mainView: {
+    display: "flex",
+    flexWrap: "nowrap",
+    flexDirection: "column",
+    alignItems: "flex-start",
+    justifyContent: "flex-start",
+    height: "100%",
+    width: "100%",
+    backgroundColor: "#ece6f2",
+    margin: 0,
+  },
+  content: {
+    display: "flex",
+    backgroundColor: "#ece6f2",
+    width: "100%",
+    marginTop: 0,
+    alignItems: "center",
+    justifyContent: "flex-start",
+    //flex: 1,
+    alignSelf: "stretch"
+  },
+  navButton: {
+    backgroundColor: "#B55BD7",
+    color: "white"
+  },
+  headingText: {
+    color: "white",
+    fontSize: 25,
+    margin: 5
+  },
+  bodyText: {
+    color: "grey",
+    fontSize: 20,
+    margin: 2
+  },
+  smallText: {
+    color: "grey",
+    fontSize: 15,
+    margin: 2
+  },
+  image: {
+    width: 240,
+    height: 240,
+    borderRadius: 5,
+    marginBottom: 10
+  },
+  lastRecipeDisplay: {
+    backgroundColor: "white",
+    borderRadius: 5,
+    marginTop: 35,
+    marginBottom: 30,
+    width: "85%",
+    height: 400,
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "flex-start"
+  },
+  lastRecipeHeader: {
+    backgroundColor: "#9042D0",
+    borderTopLeftRadius: 5,
+    borderTopRightRadius: 5,
+    width: "100%",
+    height: 50,
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    color: "white"
+  },
+  lastRecipeFoodDesc: {
+    paddingTop: 25,
+    paddingBottom: 30,
+    paddingLeft: 15,
+    paddingRight: 15,
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "flex-start"
+  },
+  button: {
+    fontSize: 25
+  },
+  appHeader: {
+    width: "100%",
+    height: 60,
+    backgroundColor: "#9042D0",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  appHeaderText: {
+    color: "white",
+    fontSize: 30,
+    margin: 5
+  }
 });
 
-/* navigation fix */
+/* navigation bar */
 
-const statusBarHeight = Platform.OS === "ios" ? 20 : 0;
-const appBarHeight = Platform.OS === "ios" ? 44 : 58;
+const statusBarHeight = Platform.OS === 'ios' ? 20 : 0;
+const appBarHeight = Platform.OS === 'ios' ? 44 : 56;
 
 const navStyles = StyleSheet.create({
     container: {
         width: "100%",
         backgroundColor: "blue"
     },
-    statusBar: {
-        height: statusBarHeight
+    statusBar: { 
+        height: statusBarHeight,
     },
     navigationBar: {
         flexDirection: "row",
         height: appBarHeight,
-        backgroundColor: "white",
-        justifyContent: "space-between",
-        alignItems: "center",
-        color: "black",
-        padding: 5,
+        backgroundColor: 'white',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        padding: 10,
         paddingLeft: 15,
-        paddingRight: 15
-    }
+        paddingRight: 15,
+        alignSelf: "flex-end",
+        width: "100%"
+    },
 });
 
-/**/
+/*navigation bar*/
 
 export default class HomeScreen extends Component {
     componentDidMount() {
@@ -144,10 +146,9 @@ export default class HomeScreen extends Component {
         this.goToCamera = this.goToCamera.bind(this);
     }
 
-    goToFridge() {
-        console.log(this.props);
-        this.props.navigation.navigate("Fridge");
-    }
+  goToFridge() {
+    this.props.navigation.navigate("Fridge");
+  }
 
     goToRecipes() {
         this.props.navigation.navigate("Recipes");
@@ -188,71 +189,50 @@ export default class HomeScreen extends Component {
             color={"#9042D0"}
             onPress={() => this.goToCamera()}
           />*/}
-                </View>
-                {/*this shit should be in the nav bar thing*/}
-                <View style={navStyles.container}>
-                    <View style={[navStyles.navigationBar]}>
-                        {/*<Button
-                  title={"Launch Camera"}
+          {/*this shit is the nav bar thing*/}
+          <View style={navStyles.container}>
+            <View style={[navStyles.navigationBar]}>
+                {/*<Button
+                    title={"Launch Camera"}
+                    color="#B55BD7"
+                    onPress={() => this.goToCamera()}
+                />
+                <Button
+                    title={"My Fridge"}
+                    color="#B55BD7"
+                    onPress={() => this.goToFridge()}
+                />
+                <Button
+                  title={"Recipes"}
                   color="#B55BD7"
-                  onPress={() => this.goToCamera()}
-              />
-              <Button
-                  title={"My Fridge"}
-                  color="#B55BD7"
-                  onPress={() => this.goToFridge()}
-              />
-              <Button
-                title={"Recipes"}
-                color="#B55BD7"
-                onPress={() => this.goToRecipes()}
-              />*/}
-                        <TouchableOpacity onPress={() => this.goToCamera()}>
-                            <View
-                                style={{
-                                    backgroundColor: "#9042D0",
-                                    alignItems: "center",
-                                    justifyContent: "center",
-                                    borderRadius: 10,
-                                    width: 100,
-                                    height: 30
-                                }}
-                            >
-                                <Text style={{ color: "white" }}>Camera</Text>
-                            </View>
-                        </TouchableOpacity>
-                        <TouchableOpacity onPress={() => this.goToFridge()}>
-                            <View
-                                style={{
-                                    backgroundColor: "#9042D0",
-                                    alignItems: "center",
-                                    justifyContent: "center",
-                                    borderRadius: 10,
-                                    width: 100,
-                                    height: 30
-                                }}
-                            >
-                                <Text style={{ color: "white" }}>Fridge</Text>
-                            </View>
-                        </TouchableOpacity>
-                        <TouchableOpacity onPress={() => this.goToRecipes()}>
-                            <View
-                                style={{
-                                    backgroundColor: "#9042D0",
-                                    alignItems: "center",
-                                    justifyContent: "center",
-                                    borderRadius: 10,
-                                    width: 100,
-                                    height: 30
-                                }}
-                            >
-                                <Text style={{ color: "white" }}>Recipes</Text>
-                            </View>
-                        </TouchableOpacity>
-                    </View>
-                </View>
-                {/*this shit should be in the nav bar thing*/}
+                  onPress={() => this.goToRecipes()}
+                />*/}
+                <TouchableOpacity onPress = {() => this.goToCamera()}>
+                  <View style = {{backgroundColor: '#9042D0', alignItems: 'center', 
+                                  justifyContent: 'center', borderRadius: 10, width: 100, height: 30}}
+                         >
+                      <Text style = {{color: 'white'}}>Camera</Text>
+                  </View>
+                </TouchableOpacity>
+                <TouchableOpacity onPress = {() => this.goToFridge()}>
+                  <View style = {{backgroundColor: '#9042D0', alignItems: 'center', 
+                                  justifyContent: 'center', borderRadius: 10, width: 100, height: 30}}
+                         >
+                      <Text style = {{color: 'white'}}>Fridge</Text>
+                  </View>
+                </TouchableOpacity>
+                <TouchableOpacity onPress = {() => this.goToRecipes()}>
+                  <View style = {{backgroundColor: '#9042D0', alignItems: 'center', 
+                                  justifyContent: 'center', borderRadius: 10, width: 100, height: 30}}
+                         >
+                      <Text style = {{color: 'white'}}>Recipes</Text>
+                  </View>
+                </TouchableOpacity>
             </View>
-        );
-    }
+          </View>
+          {/*this shit is the nav bar thing*/}
+        </View>
+      </View>
+    );
+  }
 }
