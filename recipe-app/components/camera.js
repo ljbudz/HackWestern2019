@@ -4,6 +4,7 @@ import * as Permissions from "expo-permissions";
 import { Camera } from "expo-camera";
 import { StyleSheet, Platform } from "react-native";
 import FormData from 'FormData';
+import { db } from "../config"
 // import { response } from "express";
 
 export default class CameraExample extends React.Component {
@@ -139,12 +140,17 @@ export default class CameraExample extends React.Component {
         }).then((response) => response.json())
         .then(responseJSON => {
           console.log(responseJSON);
-          // TODO: Add ingredients to firebase
+
+        
+          // //ArrayName.forEach(function(ingredient) {
+          //   const newItemRef = db.ref("/ingredients").push()
+          //   newItemRef.set({
+          //     name: // Name property
+          //   })});
         })
         .catch((error) => {
           console.log(error);
         });
-      console.log("Hello");
     }
   };
 }
