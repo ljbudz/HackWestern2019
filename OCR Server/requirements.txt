@@ -1,0 +1,4 @@
+flask 
+werkzeug
+flask-ngrok
+google-cloud-vision
