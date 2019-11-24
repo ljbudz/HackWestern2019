@@ -1,42 +1,32 @@
-var request = require("request");
+var axios = require("axios");
 
-function getRecipes(ingredients) {
-  var params = {
-    apiKey: "41382040abdc466b8057b63189fd03e6",
-    ranking: 2,
-    number: 5,
-    ingredients: ingredients
-  };
+export function getRecipes(items) {
+    var params = {
+        apiKey: "41382040abdc466b8057b63189fd03e6",
+        ranking: 2,
+        number: 10,
+        ingredients: items
+    };
 
-  const makeRequest = params => {
+    const createUrlParamString = (name, params) => {
+        if (typeof params == "object") {
+            let result = "&" + name + "=" + params[0];
+            for (let i = 1; i < params.length; i++) {
+                result += ",+" + params[i];
+            }
+            return result;
+        }
+        return "&" + name + "=" + params;
+    };
+
     let queryUrl = "https://api.spoonacular.com/recipes/findByIngredients?";
-
     for (let key in params) {
-      if (Object.prototype.hasOwnProperty.call(params, key)) {
-        queryUrl += createUrlParamString(key, params[key]);
-      }
+        if (Object.prototype.hasOwnProperty.call(params, key)) {
+            queryUrl += createUrlParamString(key, params[key]);
+        }
     }
 
-    request(queryUrl, (error, response, body) => {
-      if (!error && response.statusCode == 200) {
-        const parsedData = JSON.parse(body);
-        return parsedData;
-      } else {
-        return error;
-      }
+    return axios.get(queryUrl).then(response => {
+        return response.data;
     });
-  };
-
-  const createUrlParamString = (name, params) => {
-    if (typeof params == "object") {
-      let result = "&" + name + "=" + params[0];
-      for (let i = 1; i < params.length; i++) {
-        result += ",+" + params[i];
-      }
-      return result;
-    }
-    return "&" + name + "=" + params;
-  };
 }
-
-modules.exports = getRecipes;
