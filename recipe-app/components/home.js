@@ -12,17 +12,18 @@ const styles = StyleSheet.create({
     justifyContent: "flex-start",
     height: "100%",
     width: "100%",
-    backgroundColor: "white",
+    backgroundColor: "#ece6f2",
     margin: 0,
   },
   content: {
     display: "flex",
     backgroundColor: "#ece6f2",
-    height: "80%",
     width: "100%",
     marginTop: 0,
     alignItems: "center",
-    justifyContent: "flex-start"
+    justifyContent: "flex-start",
+    //flex: 1,
+    alignSelf: "stretch"
   },
   navButton: {
     backgroundColor: "#B55BD7",
@@ -98,17 +99,17 @@ const styles = StyleSheet.create({
   }
 });
 
-/* navigation fix */
+/* navigation bar */
 
 const statusBarHeight = Platform.OS === 'ios' ? 20 : 0;
-const appBarHeight = Platform.OS === 'ios' ? 44 : 58;
+const appBarHeight = Platform.OS === 'ios' ? 44 : 56;
 
 const navStyles = StyleSheet.create({
     container: {
         width: "100%",
         backgroundColor: "blue"
     },
-    statusBar: {
+    statusBar: { 
         height: statusBarHeight,
     },
     navigationBar: {
@@ -117,14 +118,15 @@ const navStyles = StyleSheet.create({
         backgroundColor: 'white',
         justifyContent: 'space-between',
         alignItems: 'center',
-        color: 'black',
-        padding: 5,
+        padding: 10,
         paddingLeft: 15,
-        paddingRight: 15
+        paddingRight: 15,
+        alignSelf: "flex-end",
+        width: "100%"
     },
 });
 
-/**/
+/*navigation bar*/
 
 export default class HomeScreen extends Component {
   componentDidMount() {
@@ -136,7 +138,6 @@ export default class HomeScreen extends Component {
   }
 
   goToFridge() {
-    console.log(this.props);
     this.props.navigation.navigate("Fridge");
   }
 
@@ -175,49 +176,49 @@ export default class HomeScreen extends Component {
             color={"#9042D0"}
             onPress={() => this.goToCamera()}
           />*/}
-        </View>
-        {/*this shit should be in the nav bar thing*/}
-        <View style={navStyles.container}>
-          <View style={[navStyles.navigationBar]}>
-              {/*<Button
-                  title={"Launch Camera"}
+          {/*this shit is the nav bar thing*/}
+          <View style={navStyles.container}>
+            <View style={[navStyles.navigationBar]}>
+                {/*<Button
+                    title={"Launch Camera"}
+                    color="#B55BD7"
+                    onPress={() => this.goToCamera()}
+                />
+                <Button
+                    title={"My Fridge"}
+                    color="#B55BD7"
+                    onPress={() => this.goToFridge()}
+                />
+                <Button
+                  title={"Recipes"}
                   color="#B55BD7"
-                  onPress={() => this.goToCamera()}
-              />
-              <Button
-                  title={"My Fridge"}
-                  color="#B55BD7"
-                  onPress={() => this.goToFridge()}
-              />
-              <Button
-                title={"Recipes"}
-                color="#B55BD7"
-                onPress={() => this.goToRecipes()}
-              />*/}
-              <TouchableOpacity onPress = {() => this.goToCamera()}>
-                <View style = {{backgroundColor: '#9042D0', alignItems: 'center', 
-                                justifyContent: 'center', borderRadius: 10, width: 100, height: 30}}
-                       >
-                    <Text style = {{color: 'white'}}>Camera</Text>
-                </View>
-              </TouchableOpacity>
-              <TouchableOpacity onPress = {() => this.goToFridge()}>
-                <View style = {{backgroundColor: '#9042D0', alignItems: 'center', 
-                                justifyContent: 'center', borderRadius: 10, width: 100, height: 30}}
-                       >
-                    <Text style = {{color: 'white'}}>Fridge</Text>
-                </View>
-              </TouchableOpacity>
-              <TouchableOpacity onPress = {() => this.goToRecipes()}>
-                <View style = {{backgroundColor: '#9042D0', alignItems: 'center', 
-                                justifyContent: 'center', borderRadius: 10, width: 100, height: 30}}
-                       >
-                    <Text style = {{color: 'white'}}>Recipes</Text>
-                </View>
-              </TouchableOpacity>
+                  onPress={() => this.goToRecipes()}
+                />*/}
+                <TouchableOpacity onPress = {() => this.goToCamera()}>
+                  <View style = {{backgroundColor: '#9042D0', alignItems: 'center', 
+                                  justifyContent: 'center', borderRadius: 10, width: 100, height: 30}}
+                         >
+                      <Text style = {{color: 'white'}}>Camera</Text>
+                  </View>
+                </TouchableOpacity>
+                <TouchableOpacity onPress = {() => this.goToFridge()}>
+                  <View style = {{backgroundColor: '#9042D0', alignItems: 'center', 
+                                  justifyContent: 'center', borderRadius: 10, width: 100, height: 30}}
+                         >
+                      <Text style = {{color: 'white'}}>Fridge</Text>
+                  </View>
+                </TouchableOpacity>
+                <TouchableOpacity onPress = {() => this.goToRecipes()}>
+                  <View style = {{backgroundColor: '#9042D0', alignItems: 'center', 
+                                  justifyContent: 'center', borderRadius: 10, width: 100, height: 30}}
+                         >
+                      <Text style = {{color: 'white'}}>Recipes</Text>
+                  </View>
+                </TouchableOpacity>
+            </View>
           </View>
+          {/*this shit is the nav bar thing*/}
         </View>
-        {/*this shit should be in the nav bar thing*/}
       </View>
     );
   }

@@ -2,7 +2,7 @@ var axios = require("axios");
 
 export function getRecipes(items) {
     var params = {
-        apiKey: "41382040abdc466b8057b63189fd03e6",
+        apiKey: "4e090e0e8eb14bc3b43d1ae65b48cf88",
         ranking: 2,
         number: 10,
         ingredients: items
