@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Platform, ScrollView, StyleSheet, Keyboard, View, TouchableOpacity, Text } from "react-native";
-import { ListItem, Input, Button, Header } from "react-native-elements";
+import { ListItem, Input, Button, Header, Icon } from "react-native-elements";
 import TouchableScale from "react-native-touchable-scale";
 import { db } from "../config";
 
@@ -36,7 +36,7 @@ const navStyles = StyleSheet.create({
 export default class Fridge extends Component {
     constructor(props) {
         super(props);
-        
+
         this.state = { text: "", list: []};
         this.deleteItem = this.deleteItem.bind(this);
 
@@ -115,7 +115,6 @@ export default class Fridge extends Component {
 
     render() {
         return (
-<<<<<<< HEAD
             <ScrollView stickyHeaderIndices={[0]}>
                 {/*this shit is the nav bar thing*/}
                 <View style={navStyles.container}>
@@ -125,11 +124,6 @@ export default class Fridge extends Component {
                             color="#B55BD7"
                             onPress={() => this.goToCamera()}
                         />
-=======
-            <ScrollView stickyHeaderIndices={[0]} keyboardShouldPersistTaps={'always'}>
-                <Header
-                    leftComponent={
->>>>>>> b8dbd988d48532692e8f17e6f828b625ebdb119b
                         <Button
                             title={"My Fridge"}
                             color="#B55BD7"
