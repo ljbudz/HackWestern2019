@@ -13,99 +13,99 @@ import NavigationBar from "./navigation.js";
 //import BottomNav from './bottomNav.js';
 
 const styles = StyleSheet.create({
-  mainView: {
-    display: "flex",
-    flexWrap: "nowrap",
-    flexDirection: "column",
-    alignItems: "flex-start",
-    justifyContent: "flex-start",
-    height: "100%",
-    width: "100%",
-    backgroundColor: "#ece6f2",
-    margin: 0,
-  },
-  content: {
-    display: "flex",
-    backgroundColor: "#ece6f2",
-    width: "100%",
-    marginTop: 0,
-    alignItems: "center",
-    justifyContent: "flex-start",
-    //flex: 1,
-    alignSelf: "stretch"
-  },
-  navButton: {
-    backgroundColor: "#B55BD7",
-    color: "white"
-  },
-  headingText: {
-    color: "white",
-    fontSize: 25,
-    margin: 5
-  },
-  bodyText: {
-    color: "grey",
-    fontSize: 20,
-    margin: 2
-  },
-  smallText: {
-    color: "grey",
-    fontSize: 15,
-    margin: 2
-  },
-  image: {
-    width: 240,
-    height: 240,
-    borderRadius: 5,
-    marginBottom: 10
-  },
-  lastRecipeDisplay: {
-    backgroundColor: "white",
-    borderRadius: 5,
-    marginTop: 35,
-    marginBottom: 30,
-    width: "85%",
-    height: 400,
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "flex-start"
-  },
-  lastRecipeHeader: {
-    backgroundColor: "#9042D0",
-    borderTopLeftRadius: 5,
-    borderTopRightRadius: 5,
-    width: "100%",
-    height: 50,
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    color: "white"
-  },
-  lastRecipeFoodDesc: {
-    paddingTop: 25,
-    paddingBottom: 30,
-    paddingLeft: 15,
-    paddingRight: 15,
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "flex-start"
-  },
-  button: {
-    fontSize: 25
-  },
-  appHeader: {
-    width: "100%",
-    height: 60,
-    backgroundColor: "#9042D0",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  appHeaderText: {
-    color: "white",
-    fontSize: 30,
-    margin: 5
-  }
+    mainView: {
+        display: "flex",
+        flexWrap: "nowrap",
+        flexDirection: "column",
+        alignItems: "flex-start",
+        justifyContent: "flex-start",
+        height: "100%",
+        width: "100%",
+        backgroundColor: "#ece6f2",
+        margin: 0
+    },
+    content: {
+        display: "flex",
+        backgroundColor: "#ece6f2",
+        width: "100%",
+        marginTop: 0,
+        alignItems: "center",
+        justifyContent: "flex-start",
+        //flex: 1,
+        alignSelf: "stretch"
+    },
+    navButton: {
+        backgroundColor: "#B55BD7",
+        color: "white"
+    },
+    headingText: {
+        color: "white",
+        fontSize: 25,
+        margin: 5,
+    },
+    bodyText: {
+        color: "grey",
+        fontSize: 20,
+        margin: 2
+    },
+    smallText: {
+        color: "grey",
+        fontSize: 15,
+        margin: 2
+    },
+    image: {
+        width: 240,
+        height: 240,
+        borderRadius: 5,
+        marginBottom: 10
+    },
+    lastRecipeDisplay: {
+        backgroundColor: "white",
+        borderRadius: 5,
+        marginTop: 35,
+        marginBottom: 30,
+        width: "85%",
+        height: 400,
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "flex-start"
+    },
+    lastRecipeHeader: {
+        backgroundColor: "#9042D0",
+        borderTopLeftRadius: 5,
+        borderTopRightRadius: 5,
+        width: "100%",
+        height: 50,
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        color: "white"
+    },
+    lastRecipeFoodDesc: {
+        paddingTop: 25,
+        paddingBottom: 30,
+        paddingLeft: 15,
+        paddingRight: 15,
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "flex-start"
+    },
+    button: {
+        fontSize: 25
+    },
+    appHeader: {
+        width: "100%",
+        height: 60,
+        backgroundColor: "#9042D0",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center"
+    },
+    appHeaderText: {
+        color: "white",
+        fontSize: 30,
+        margin: 5
+    }
 });
 
 /* navigation bar */
