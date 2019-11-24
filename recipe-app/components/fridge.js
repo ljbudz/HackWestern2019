@@ -36,6 +36,7 @@ const navStyles = StyleSheet.create({
 export default class Fridge extends Component {
     constructor(props) {
         super(props);
+<<<<<<< HEAD
         this.state = { text: "", list: []};
 
         this.goToHomeScreen = this.goToHomeScreen.bind(this);
@@ -53,42 +54,72 @@ export default class Fridge extends Component {
 
     goToCamera() {
         this.props.navigation.navigate("Camera");
+=======
+        this.state = { text: "", list: [] };
+
+        this.deleteItem = this.deleteItem.bind(this);
+>>>>>>> b8dbd988d48532692e8f17e6f828b625ebdb119b
     }
 
     componentDidMount() {
         let list = [];
-        db.ref("/ingredients").once("value", function(snapshot) {
-            snapshot.forEach(function(childSnapshot) {
-                list.push({
-                    key: childSnapshot.key,
-                    name: childSnapshot.val().name
+        db.ref("/ingredients")
+            .once("value", function(snapshot) {
+                snapshot.forEach(function(childSnapshot) {
+                    list.push({
+                        key: childSnapshot.key,
+                        name: childSnapshot.val().name
+                    });
                 });
+            })
+            .then(() => {
+                this.setState({ list: list });
             });
-        }).then(() => {
-            this.setState({list: list});
-        });
     }
 
     handleSubmit = () => {
         let list = this.state.list;
-        db.ref("/ingredients").push({
-            name: this.state.text
-        }).once("value", function(snapshot) {
-            list.push({
-                key: snapshot.key,
-                name: snapshot.val().name
+        db.ref("/ingredients")
+            .push({
+                name: this.state.text
+            })
+            .once("value", function(snapshot) {
+                list.push({
+                    key: snapshot.key,
+                    name: snapshot.val().name
+                });
             });
-    
-        });
         this.setState({
-            text: '',
-            list : list
+            text: "",
+            list: list
         });
         Keyboard.dismiss();
     };
 
+    deleteItem(key) {
+        let list = [];
+        db.ref("/ingredients")
+            .child(key)
+            .remove()
+            .then(() => {
+                db.ref("/ingredients")
+                    .once("value", function(snapshot) {
+                        snapshot.forEach(function(childSnapshot) {
+                            list.push({
+                                key: childSnapshot.key,
+                                name: childSnapshot.val().name
+                            });
+                        });
+                    })
+                    .then(() => {
+                        this.setState({ list: list });
+                    });
+            });
+    }
+
     render() {
         return (
+<<<<<<< HEAD
             <ScrollView stickyHeaderIndices={[0]}>
                 {/*this shit is the nav bar thing*/}
                 <View style={navStyles.container}>
@@ -98,6 +129,11 @@ export default class Fridge extends Component {
                             color="#B55BD7"
                             onPress={() => this.goToCamera()}
                         />
+=======
+            <ScrollView stickyHeaderIndices={[0]} keyboardShouldPersistTaps={'always'}>
+                <Header
+                    leftComponent={
+>>>>>>> b8dbd988d48532692e8f17e6f828b625ebdb119b
                         <Button
                             title={"My Fridge"}
                             color="#B55BD7"
@@ -175,7 +211,13 @@ export default class Fridge extends Component {
                             fontWeight: "bold"
                         }}
                         subtitleStyle={{ color: "white" }}
-                        chevron={{ color: "white" }}
+                        rightIcon={
+                            <Icon
+                                name="delete"
+                                color="white"
+                                onPress={() => this.deleteItem(item.key)}
+                            />
+                        }
                     />
                 ))}
             </ScrollView>

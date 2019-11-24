@@ -193,7 +193,8 @@ const style = StyleSheet.create({
         height: 150,
         width: 150,
         marginRight: 15,
-        flex: 1
+        flex: 1,
+        borderRadius: 5
     },
     viewContainer: {
         display: "flex",
