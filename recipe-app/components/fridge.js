@@ -1,34 +1,41 @@
 import React, { Component } from "react";
-import { Platform, ScrollView, StyleSheet, Keyboard, View, TouchableOpacity, Text } from "react-native";
+import {
+    Platform,
+    ScrollView,
+    StyleSheet,
+    Keyboard,
+    View,
+    TouchableOpacity,
+    Text
+} from "react-native";
 import { ListItem, Input, Button, Header, Icon } from "react-native-elements";
 import TouchableScale from "react-native-touchable-scale";
 import { db } from "../config";
 
 /* navigation bar */
 
-const statusBarHeight = Platform.OS === 'ios' ? 20 : 0;
-const appBarHeight = Platform.OS === 'ios' ? 44 : 56;
+const statusBarHeight = Platform.OS === "ios" ? 20 : 0;
+const appBarHeight = Platform.OS === "ios" ? 44 : 56;
 
 const navStyles = StyleSheet.create({
     container: {
         width: "100%",
-        backgroundColor: "blue"
     },
-    statusBar: { 
-        height: statusBarHeight,
+    statusBar: {
+        height: statusBarHeight
     },
     navigationBar: {
-        flexDirection: 'row',
+        flexDirection: "row",
         height: appBarHeight,
-        backgroundColor: 'white',
-        justifyContent: 'space-between',
-        alignItems: 'center',
+        backgroundColor: "white",
+        justifyContent: "space-between",
+        alignItems: "center",
         padding: 15,
         paddingLeft: 20,
         paddingRight: 20,
         alignSelf: "flex-end",
-        width: "100%",
-    },
+        width: "100%"
+    }
 });
 
 /*navigation bar*/
@@ -134,26 +141,47 @@ export default class Fridge extends Component {
                           color="#B55BD7"
                           onPress={() => this.goToRecipes()}
                         />*/}
-                        <TouchableOpacity onPress = {() => this.goToCamera()}>
-                          <View style = {{backgroundColor: '#9042D0', alignItems: 'center', 
-                                          justifyContent: 'center', borderRadius: 10, width: 100, height: 30}}
-                                 >
-                              <Text style = {{color: 'white'}}>Camera</Text>
-                          </View>
+                        <TouchableOpacity onPress={() => this.goToCamera()}>
+                            <View
+                                style={{
+                                    backgroundColor: "#9042D0",
+                                    alignItems: "center",
+                                    justifyContent: "center",
+                                    borderRadius: 10,
+                                    width: 100,
+                                    height: 30
+                                }}
+                            >
+                                <Text style={{ color: "white" }}>Camera</Text>
+                            </View>
                         </TouchableOpacity>
-                        <TouchableOpacity onPress = {() => this.goToHomeScreen()}>
-                          <View style = {{backgroundColor: '#9042D0', alignItems: 'center', 
-                                          justifyContent: 'center', borderRadius: 10, width: 100, height: 30}}
-                                 >
-                              <Text style = {{color: 'white'}}>Home</Text>
-                          </View>
+                        <TouchableOpacity onPress={() => this.goToHomeScreen()}>
+                            <View
+                                style={{
+                                    backgroundColor: "#9042D0",
+                                    alignItems: "center",
+                                    justifyContent: "center",
+                                    borderRadius: 10,
+                                    width: 100,
+                                    height: 30
+                                }}
+                            >
+                                <Text style={{ color: "white" }}>Home</Text>
+                            </View>
                         </TouchableOpacity>
-                        <TouchableOpacity onPress = {() => this.goToRecipes()}>
-                          <View style = {{backgroundColor: '#9042D0', alignItems: 'center', 
-                                          justifyContent: 'center', borderRadius: 10, width: 100, height: 30}}
-                                 >
-                              <Text style = {{color: 'white'}}>Recipes</Text>
-                          </View>
+                        <TouchableOpacity onPress={() => this.goToRecipes()}>
+                            <View
+                                style={{
+                                    backgroundColor: "#9042D0",
+                                    alignItems: "center",
+                                    justifyContent: "center",
+                                    borderRadius: 10,
+                                    width: 100,
+                                    height: 30
+                                }}
+                            >
+                                <Text style={{ color: "white" }}>Recipes</Text>
+                            </View>
                         </TouchableOpacity>
                     </View>
                 </View>
@@ -173,15 +201,22 @@ export default class Fridge extends Component {
                     }}
                     value={this.state.text}
                     rightIcon={
-                        <TouchableOpacity onPress = {this.handleSubmit}>
-                          <View style = {{backgroundColor: '#9042D0', alignItems: 'center', 
-                                          justifyContent: 'center', borderRadius: 10, width: 60, height: 35}}
-                                 >
-                              <Text style = {{color: 'white'}}>Add</Text>
-                          </View>
+                        <TouchableOpacity onPress={this.handleSubmit}>
+                            <View
+                                style={{
+                                    backgroundColor: "#9042D0",
+                                    alignItems: "center",
+                                    justifyContent: "center",
+                                    borderRadius: 10,
+                                    width: 60,
+                                    height: 35
+                                }}
+                            >
+                                <Text style={{ color: "white" }}>Add</Text>
+                            </View>
                         </TouchableOpacity>
                     }
-                    style={{marginTop: 10, marginBottom: 15}}
+                    style={{ marginTop: 10, marginBottom: 15 }}
                 />
                 {this.state.list.map((item, i) => (
                     <ListItem
@@ -189,25 +224,23 @@ export default class Fridge extends Component {
                         Component={TouchableScale}
                         friction={90} //
                         tension={100} // These props are passed to the parent component (here TouchableScale)
-                        activeScale={0.95} //
-                        linearGradientProps={{
-                            colors: ["#9D18B0", "#7901Fd"],
-                            start: [1, 0],
-                            end: [0.2, 0]
-                        }}
+                        activeScale={0.95}
                         title={item.name}
                         titleStyle={{
-                            color: "white",
-                            fontWeight: "bold"
+                            color: "black",
+                            fontWeight: "normal"
                         }}
-                        subtitleStyle={{ color: "white" }}
                         rightIcon={
                             <Icon
                                 name="delete"
-                                color="white"
+                                color="#7901Fd"
                                 onPress={() => this.deleteItem(item.key)}
                             />
                         }
+                        style={{
+                            paddingBottom: 1,
+                            backgroundColor: "lightgrey"
+                        }}
                     />
                 ))}
             </ScrollView>
