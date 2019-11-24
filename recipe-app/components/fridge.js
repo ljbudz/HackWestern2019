@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 import { ScrollView, Keyboard } from "react-native";
-import { ListItem, Input, Button } from "react-native-elements";
+import { ListItem, Input, Button, Header } from "react-native-elements";
 import TouchableScale from "react-native-touchable-scale";
-import Icon from "react-native-vector-icons/FontAwesome";
 import { db } from "../config";
 
 export default class Fridge extends Component {
@@ -45,7 +44,22 @@ export default class Fridge extends Component {
 
     render() {
         return (
-            <ScrollView>
+            <ScrollView stickyHeaderIndices={[0]}>
+                <Header
+                    leftComponent={
+                        <Button
+                            title="Home"
+                            onPress={() =>
+                                this.props.navigation.navigate("Home")
+                            }
+                        />
+                    }
+                    centerComponent={{
+                        text: "My Fridge",
+                        style: { color: "#fff" }
+                    }}
+                    backgroundColor="purple"
+                />
                 <Input
                     placeholder="Add new indredients..."
                     leftIcon={{
@@ -53,8 +67,11 @@ export default class Fridge extends Component {
                         name: "shopping-cart"
                     }}
                     onChangeText={text => {
-                        this.setState(Object.assign(this.state, {
-                        text }));
+                        this.setState(
+                            Object.assign(this.state, {
+                                text
+                            })
+                        );
                     }}
                     value={this.state.text}
                     rightIcon={
