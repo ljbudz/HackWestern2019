@@ -43,7 +43,8 @@ const navStyles = StyleSheet.create({
 export default class Fridge extends Component {
     constructor(props) {
         super(props);
-        this.state = { text: "", list: [] };
+        
+        this.state = { text: "", list: []};
         this.deleteItem = this.deleteItem.bind(this);
 
         this.goToHomeScreen = this.goToHomeScreen.bind(this);
