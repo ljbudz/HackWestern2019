@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { createAppContainer } from "react-navigation";
+import { createAppContainer, SafeAreaView } from "react-navigation";
 import { createStackNavigator } from "react-navigation-stack";
 import Camera from "./components/camera";
 import Recipes from "./components/recipes";
@@ -14,7 +14,8 @@ const AppNavigator = createStackNavigator(
     Recipes: Recipes
   },
   {
-    initialRouteName: "Home"
+    initialRouteName: "Home",
+    headerMode: 'none'
   }
 );
 

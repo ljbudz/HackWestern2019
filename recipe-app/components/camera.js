@@ -2,6 +2,7 @@ import React from "react";
 import { Text, View, TouchableOpacity, Button } from "react-native";
 import * as Permissions from "expo-permissions";
 import { Camera } from "expo-camera";
+import { StyleSheet, Platform } from "react-native";
 
 export default class CameraExample extends React.Component {
   state = {
@@ -16,7 +17,6 @@ export default class CameraExample extends React.Component {
 
   render() {
     const { hasCameraPermission } = this.state;
-    console.log("render");
     if (hasCameraPermission === null) {
       return <View />;
     } else if (hasCameraPermission === false) {
@@ -65,12 +65,26 @@ export default class CameraExample extends React.Component {
                   Flip{" "}
                 </Text>
               </TouchableOpacity>
-              <Button
+              <TouchableOpacity
+                style={{
+                  flex: 0.3,
+                  alignSelf: "flex-start",
+                  alignItems: "center",
+                  //backgroundColor: "grey"
+                }}
                 onPress={() => this.snap()}
-                title="take picture"
               >
-                {" "}
-              </Button>
+                <Text
+                  style={{
+                    fontSize: 18,
+                    marginTop: 10,
+                    color: "white"
+                  }}
+                >
+                  {" "}
+                  Take Picture{" "}
+                </Text>
+              </TouchableOpacity>
             </View>
           </Camera>
         </View>
@@ -85,3 +99,10 @@ export default class CameraExample extends React.Component {
     }
   };
 }
+
+const styles = StyleSheet.create({
+  button: {
+    height: 10,
+    //flex: "none"
+  }
+});
