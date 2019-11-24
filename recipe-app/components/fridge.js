@@ -70,7 +70,7 @@ export default class Fridge extends Component {
 
     render() {
         return (
-            <ScrollView stickyHeaderIndices={[0]}>
+            <ScrollView stickyHeaderIndices={[0]} keyboardShouldPersistTaps={'always'}>
                 <Header
                     leftComponent={
                         <Button
