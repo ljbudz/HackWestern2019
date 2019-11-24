@@ -1,13 +1,18 @@
 import React, { Component } from "react";
-import { View } from "react-native";
-import { ListItem } from "react-native-elements";
+import { ScrollView, Keyboard } from "react-native";
+import { ListItem, Input, Button } from "react-native-elements";
 import TouchableScale from "react-native-touchable-scale";
+import Icon from "react-native-vector-icons/FontAwesome";
 import { db } from "../config";
 
-const list = [];
-
 export default class Fridge extends Component {
+    constructor(props) {
+        super(props);
+        this.state = { text: "", list: []};
+    }
+
     componentDidMount() {
+        let list = [];
         db.ref("/ingredients").once("value", function(snapshot) {
             snapshot.forEach(function(childSnapshot) {
                 list.push({
@@ -15,13 +20,52 @@ export default class Fridge extends Component {
                     name: childSnapshot.val().name
                 });
             });
+        }).then(() => {
+            this.setState({list: list});
         });
     }
 
+    handleSubmit = () => {
+        let list = this.state.list;
+        db.ref("/ingredients").push({
+            name: this.state.text
+        }).once("value", function(snapshot) {
+            list.push({
+                key: snapshot.key,
+                name: snapshot.val().name
+            });
+    
+        });
+        this.setState({
+            text: '',
+            list : list
+        });
+        Keyboard.dismiss();
+    };
+
     render() {
         return (
-            <View>
-                {list.map((item, i) => (
+            <ScrollView>
+                <Input
+                    placeholder="Add new indredients..."
+                    leftIcon={{
+                        type: "font-awesome",
+                        name: "shopping-cart"
+                    }}
+                    onChangeText={text => {
+                        this.setState(Object.assign(this.state, {
+                        text }));
+                    }}
+                    value={this.state.text}
+                    rightIcon={
+                        <Button
+                            title="Add"
+                            type="solid"
+                            onPress={this.handleSubmit}
+                        />
+                    }
+                />
+                {this.state.list.map((item, i) => (
                     <ListItem
                         key={item.key}
                         Component={TouchableScale}
@@ -34,13 +78,15 @@ export default class Fridge extends Component {
                             end: [0.2, 0]
                         }}
                         title={item.name}
-                        titleStyle={{ color: "white", fontWeight: "bold" }}
+                        titleStyle={{
+                            color: "white",
+                            fontWeight: "bold"
+                        }}
                         subtitleStyle={{ color: "white" }}
                         chevron={{ color: "white" }}
                     />
                 ))}
-            </View>
+            </ScrollView>
         );
     }
 }
-
