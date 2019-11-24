@@ -67,26 +67,47 @@ export default class CameraExample extends React.Component {
                   Flip{" "}
                 </Text>
               </TouchableOpacity>
-              <TouchableOpacity
+              <View
                 style={{
-                  flex: 0.3,
-                  alignSelf: "flex-start",
-                  alignItems: "center",
-                  //backgroundColor: "grey"
-                }}
-                onPress={() => this.snap()}
-              >
+                  width: '100%',
+                  justifyContent: 'center',
+                  alignItems: 'center'
+                }}>
                 <Text
                   style={{
-                    fontSize: 18,
-                    marginTop: 10,
-                    color: "white"
+                    top: '5%',
+                    fontSize: 25,
+                    color: 'rgba(153,48,201,0.9)',
+                    position: 'absolute'
                   }}
                 >
-                  {" "}
-                  Take Picture{" "}
-                </Text>
-              </TouchableOpacity>
+                  Upload Receipt
+                  </Text>
+                <TouchableOpacity
+                  style={{
+                    borderWidth: 5,
+                    borderColor: 'rgba(153,48,201,0.9)',
+                    width: 80,
+                    height: 80,
+                    borderRadius: 40,
+                    backgroundColor: 'rgba(211,211,211,0.4)',
+                    position: "absolute",
+                    bottom: '2%',
+                  }}
+                  onPress={() => this.snap()}
+                >
+                  <Text
+                    style={{
+                      fontSize: 18,
+                      marginTop: 10,
+                      color: "black"
+                    }}
+                  >
+                    {" "}
+                    {" "}
+                  </Text>
+                </TouchableOpacity>
+              </View>
             </View>
           </Camera>
         </View>
@@ -98,32 +119,31 @@ export default class CameraExample extends React.Component {
     if (this.camera) {
       let photo = await this.camera.takePictureAsync();
       console.log(photo);
-      var data  = new FormData();
+      var data = new FormData();
       var pic = {
         uri: photo.uri,
         type: 'image/jpeg',
         name: 'photo.jpg'
       };
-      data.append("test", "ABCD");
       data.append("image", pic);
       // Update URL accordingly
-      fetch('http://2e2c28a2.ngrok.io/procReceipt',
-      {
-        method: 'POST',
-        headers: {
-          Accept: 'application/json',
-          'Content-Type':'multipart/form-data',
-          'X-Requested-With': 'XMLHttpRequest'
-        },
-        body:data
-      }).then((response) => response.json())
-      .then(responseJSON => {
-        console.log(responseJSON);
-        // TODO: Add ingredients to firebase
-      })
-      .catch((error)=>{
-        console.log(error);
-      });
+      fetch('http://53869399.ngrok.io/procReceipt',
+        {
+          method: 'POST',
+          headers: {
+            Accept: 'application/json',
+            'Content-Type': 'multipart/form-data',
+            'X-Requested-With': 'XMLHttpRequest'
+          },
+          body: data
+        }).then((response) => response.json())
+        .then(responseJSON => {
+          console.log(responseJSON);
+          // TODO: Add ingredients to firebase
+        })
+        .catch((error) => {
+          console.log(error);
+        });
       console.log("Hello");
     }
   };
