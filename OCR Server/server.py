@@ -3,15 +3,17 @@ from flask import Flask, request, Response
 from werkzeug.utils import secure_filename
 from OCR import detect_text
 import json
+from flask_ngrok import run_with_ngrok
 
 UPLOAD_FOLDER = "uploads"
 
 app = Flask(__name__)
+run_with_ngrok(app)
 app.config["UPLOAD_FOLDER"] = UPLOAD_FOLDER
 
 @app.route("/")
 def home():
-    return "Hello World!"
+    return "Unauthorized access. Please contact Harrison Chow for support!"
 
 @app.route("/procReceipt", methods=['POST'])
 def processReceipt():
@@ -28,4 +30,4 @@ def processReceipt():
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run()
