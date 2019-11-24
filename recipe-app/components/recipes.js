@@ -86,6 +86,9 @@ export default class RecipeSearch extends Component {
                                                 "\n"}
                                         </Text>
                                         {this.parseRecipeText(recipe)[1]}
+                                        <Text style={{color: "green"}}>
+                                            {"\nYou Save: $" + Math.floor(Math.random()*20)}
+                                        </Text>
                                     </Text>
                                 </View>
                             </Card>
