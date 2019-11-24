@@ -36,8 +36,9 @@ const navStyles = StyleSheet.create({
 export default class Fridge extends Component {
     constructor(props) {
         super(props);
-<<<<<<< HEAD
+        
         this.state = { text: "", list: []};
+        this.deleteItem = this.deleteItem.bind(this);
 
         this.goToHomeScreen = this.goToHomeScreen.bind(this);
         this.goToRecipes = this.goToRecipes.bind(this);
@@ -54,11 +55,6 @@ export default class Fridge extends Component {
 
     goToCamera() {
         this.props.navigation.navigate("Camera");
-=======
-        this.state = { text: "", list: [] };
-
-        this.deleteItem = this.deleteItem.bind(this);
->>>>>>> b8dbd988d48532692e8f17e6f828b625ebdb119b
     }
 
     componentDidMount() {
