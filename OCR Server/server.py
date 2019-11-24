@@ -20,12 +20,20 @@ def processReceipt():
     file = request.files['image']
 
     if (file is None or file.filename == ''):
-        flash('No selected File')
+        # flash('No selected File')
         return "No file selected"
     else:
         filename = secure_filename(file.filename)
         file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
         ingredients = detect_text(str(app.config['UPLOAD_FOLDER'] + "/" +filename))
+        print (type(ingredients))
+        for i in range (len(ingredients)):
+            print (ingredients[i])
+        # response = json.dumps(ingredients)
+        # print (response)
+        # for i in range (len(response)):
+        #     print (response[i])
+
         return Response(json.dumps(ingredients), mimetype='application/json')
 
 

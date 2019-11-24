@@ -1,12 +1,6 @@
 import React, { Component } from "react";
-import {
-  StyleSheet,
-  Text,
-  View,
-  Button,
-  TextInput,
-  TouchableHighlight
-} from "react-native";
+import { View, Text, Image } from "react-native";
+import { Card, ListItem, Button, Icon } from "react-native-elements";
 import { db } from "../config";
 
 let addIngredient = item => {
@@ -18,35 +12,13 @@ let addIngredient = item => {
 export default class RecipeSearch extends Component {
   constructor(props) {
     super(props);
+    this.state = {recipes: []}
   }
-
-  state = {
-    name: ""
-  };
-
-  handleChange = e => {
-    this.setState({
-      name: e.nativeEvent.text
-    });
-  };
-
-  handleSubmit = () => {
-    addIngredient(this.state.name);
-  };
 
   render() {
     return (
-      <View>
-        <Text>Add Item</Text>
-        <TextInput onChange={this.handleChange} />
-        <TouchableHighlight
-          underlayColor="white"
-          onPress={this.handleSubmit}
-        >
-          <Text>Add</Text>
-        </TouchableHighlight>
-      </View>
-    );
+      <View></View>
+    )
   }
 }
 
